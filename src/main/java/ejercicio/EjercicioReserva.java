@@ -18,8 +18,8 @@
 //Extra: En caso de que un cliente soliite visualizar cúales son los asientos libres
 //el sistema debe permitir mostrar de forma gráfica el mapa de asientos.
 //No utillizar IGU para este caso. Utilizar únicamente lógica y salida por consola.
-
 package ejercicio;
+import java.util.Scanner;
 
 /**
  *
@@ -30,6 +30,16 @@ public class EjercicioReserva {
     public static void main(String[] args) {
 
         char asientos [][] = new char [10][10];
+        boolean bandera = false;
+
+        //ingresar datos
+        Scanner teclado = new Scanner(System.in);
+
+        //variable para guardar fila y asiento
+        int fila, asiento;
+
+        //Variable para respuesta de usuario 
+        String respuesta;
 
         //Carga de filas y asientos
         for (int f = 0; f < 10; f++){
@@ -40,9 +50,36 @@ public class EjercicioReserva {
 
         System.out.println("----------BIENVENIDO AL SISTEMA DE RESERVAS----------");
 
+        //Reserva de asientos mediante while
+        while(bandera!=true){
+        System.out.println("Ingrese Fila y Asiento a reservar");
+
+        // Fila y asientos a reservar, almacenados en sus respectivas variables
+        System.out.print("Fila (0-9): ");
+        fila = teclado.nextInt();
+
+        System.out.print("Asiento (0-9): ");
+        asiento = teclado.nextInt();
+
+        if(asientos[fila][asiento] == 'L'){
+            asientos[fila][asiento] = 'X';
+            System.out.println("El asiento fue reservado exitosamente");
+        } else{
+                System.out.println("El asiento ya esta reservado, por favor alija otro");
+            }
+        
+        System.out.println("¿Desea finalizar la reserva? S: Si / Cualquiera tecla: No");
+        respuesta = teclado.next();
+
+        if(respuesta.equalsIgnoreCase("S")){
+            bandera = true;
+        }
+        }
+        
     }
 }
 
+
 //cd "/d/Mis cosas/Programacion/Java/EjercicioReserva"
 //javac src/main/java/ejercicio/EjercicioReserva.java
-//java -cp src/main/java ejercicio.EjercicioReserva.new
+//java -cp src/main/java ejercicio.EjercicioReserva
