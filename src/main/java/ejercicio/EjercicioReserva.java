@@ -41,6 +41,9 @@ public class EjercicioReserva {
         //Variable para respuesta de usuario 
         String respuesta;
 
+        //Variable mapa
+        String verMapa;
+
         //Carga de filas y asientos
         for (int f = 0; f < 10; f++){
             for (int c = 0; c < 10; c++) {
@@ -52,6 +55,15 @@ public class EjercicioReserva {
 
         //Reserva de asientos mediante while
         while(bandera!=true){
+
+        //Mostrar asientos disponibles
+        System.out.println("¿Desea ver los asientos disponibles? S: Si / Cualquier otra tecla: No");
+        verMapa = teclado.next();
+        if(verMapa.equalsIgnoreCase("S")){
+            dibujarMapa(asientos);
+        }
+        
+
         System.out.println("Ingrese Fila y Asiento a reservar");
 
         // Fila y asientos a reservar, almacenados en sus respectivas variables
@@ -64,6 +76,7 @@ public class EjercicioReserva {
         if(asientos[fila][asiento] == 'L'){
             asientos[fila][asiento] = 'X';
             System.out.println("El asiento fue reservado exitosamente");
+            
         } else{
                 System.out.println("El asiento ya esta reservado, por favor alija otro");
             }
@@ -74,9 +87,20 @@ public class EjercicioReserva {
         if(respuesta.equalsIgnoreCase("S")){
             bandera = true;
         }
-        }
+    }
         
     }
+
+    static void dibujarMapa(char asientos[][]){ //metodo estatico, que no va a cambiar  el estado de la matriz
+            for (int f = 0; f < 10; f++){
+                System.out.print(f + "");
+                for(int c = 0; c < 10; c++){
+                    System.out.print("[" + asientos[f][c] + "]");
+                }
+                System.out.println("");
+            }
+        }
+
 }
 
 
